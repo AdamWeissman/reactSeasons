@@ -11,13 +11,11 @@ class App extends React.Component {
   state = { lat: null, errorMessage: ''}; 
   //the above line is equivalent to the instructor above
 
-
-
   componentDidMount() {
       window.navigator.geolocation.getCurrentPosition(
-      position => this.setState({ lat: position.coords.latitude }),
-      err => this.setState({errorMessage: err.message })
-      //remember, argument for arrow functions doesn't need parens around it
+        position => this.setState({ lat: position.coords.latitude }),
+        err => this.setState({errorMessage: err.message })
+        //remember, argument for arrow functions doesn't need parens around it
     );
   }
 
