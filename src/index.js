@@ -20,7 +20,7 @@ class App extends React.Component {
     );
   }
 
-  render() {
+  renderContent() {
     if (this.state.errorMessage && !this.state.lat) {
       return <div>Error: {this.state.errorMessage}</div>
     }
@@ -29,7 +29,16 @@ class App extends React.Component {
       return <SeasonDisplay lat={this.state.lat} />
     }
 
-    return <Spinner message="Please Accept Location Request" />
+    return <Spinner message="Please Accept Location Request" />;
+  }
+
+  render() {
+    return (
+      <div className="border red"> ... there's no actual border for the example, but this is how you'd render a component within a container
+        {this.renderContent()}
+      </div>
+    )
+   
   }
 }
 
