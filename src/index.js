@@ -3,30 +3,23 @@ import ReactDOM from 'react-dom';
 import SeasonDisplay from './SeasonDisplay'
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    // this is the ONLY time we do direct assignment
-    // to this.state ... nowhere else
-    this.state = { lat: null, errorMessage: '' };
+  // constructor(props) {
+  //   super(props);
+  //   this.state = { lat: null, errorMessage: '' };
+  // }  THIS IS ONE WAY OF SETTING STATE
 
-    window.navigator.geolocation.getCurrentPosition(
-      position => {
-        this.setState({ lat: position.coords.latitude });
-      },
-      err => {
-        this.setState({errorMessage: err.message });
-      }
+  state = { lat: null, errorMessage: ''}; 
+  //the above line is equivalent to the instructor above
+
+
+
+  componentDidMount() {
+      window.navigator.geolocation.getCurrentPosition(
+      position => this.setState({ lat: position.coords.latitude }),
+      err => this.setState({errorMessage: err.message })
       //remember, argument for arrow functions doesn't need parens around it
     );
   }
-
-  // componentDidMount() {
-  //   console.log('My component was rendered to the screen');
-  // }
-
-  // componentDidUpdate() {
-  //   console.log('My component was updated... it just rerendered');
-  // }
 
   render() {
     if (this.state.errorMessage && !this.state.lat) {
